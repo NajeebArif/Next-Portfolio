@@ -1,11 +1,12 @@
 
 
 import React from 'react'
+import BaseLayout from '../components/layouts/BaseLayouts'
 
 export default function About() {
     return (
-        <div>
-            I am about
-        </div>
+        <BaseLayout>
+            <h1>I am about page</h1>
+        </BaseLayout >
     )
 }

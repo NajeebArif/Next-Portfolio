@@ -1,7 +1,9 @@
-
+import BaseLayout from "../components/layouts/BaseLayouts"
 
 export default function Home() {
   return (
-    <div>Hello Index page</div>
+    <BaseLayout>
+      <h1>I am home page</h1>
+    </BaseLayout >
   )
 }
