@@ -2,6 +2,11 @@ import React from 'react';
 import BaseLayout from '../components/layouts/BaseLayouts';
 import { Container, Row, Col } from 'reactstrap';
 
+import ReactTypingEffect from 'react-typing-effect';
+
+
+const roles = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"];
+
 class Index extends React.Component {
   render() {
     return (
@@ -37,6 +42,7 @@ class Index extends React.Component {
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
                 </div>
+                <ReactTypingEffect className="self-typed" text={roles}/>
                 <div className="hero-welcome-bio">
                   <h1>
                     Let's take a look on my work.
