@@ -1,9 +1,17 @@
 
-import BaseLayout from '../components/layouts/BaseLayouts'
+import BaseLayout from '../../components/layouts/BaseLayouts'
 import axios from 'axios'
+import Link from 'next/link'
 
 export default function Portfolios({ posts }) {
-    const renderPosts = () => posts.map(post => <li key={post.id}>{post.title}</li>)
+    const renderPosts = () => posts.map(post => <li key={post.id}>
+        <Link href={`/portfolios/${post.id}`}>
+            <a>
+                {post.title}
+            </a>
+        </Link>
+    </li>)
+
     return (
         <BaseLayout>
             <h1>I am portfolios page</h1>
