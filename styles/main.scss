@@ -9,6 +9,10 @@
   position: absolute;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -20,4 +24,9 @@ html, body {
   color: white;
   font-weight: bold;
   letter-spacing: 2px;
+}
+
+.base-page {
+  padding-top: 150px;
+  color: white;
 }
