@@ -18,6 +18,11 @@ export const useGetPosts = () => {
   return {data, error, loading: !data && !error, ...rest}
 }
 
+export const useGetPostsById = (id) => {
+    const {data, error, ...rest} = useSWR(id ? '/api/v1/posts' : null, fetcher);
+    return {data, error, loading: !data && !error, ...rest}
+  }
+
 
 
 // import { useEffect, useState } from 'react';
