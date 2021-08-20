@@ -1,19 +1,22 @@
 
 import BaseLayout from '../../components/layouts/BaseLayouts'
+import BasePage from '../../components/BasePage'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
 
-const Portfolio = ({portfolio}) => {
+const Portfolio = ({ portfolio }) => {
 
     const router = useRouter();
 
     return (
         <BaseLayout>
-            <h1>Portfolio Page</h1>
-            <h1>{portfolio.title}</h1>
-            <p>BODY: {portfolio.body}</p>
-            <p>ID: {portfolio.id}</p>
+            <BasePage>
+                <h1>I am Portfolio Page</h1>
+                <h1>{portfolio.title}</h1>
+                <p>BODY: {portfolio.body}</p>
+                <p>ID: {portfolio.id}</p>
+            </BasePage>
         </BaseLayout>
     )
 }
