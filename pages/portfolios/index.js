@@ -1,11 +1,15 @@
 
 import BaseLayout from '../../components/layouts/BaseLayouts'
 import BasePage from '../../components/BasePage'
-import axios from 'axios'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { useGetData } from '../../actions'
 
-export default function Portfolios({ posts }) {
-    const renderPosts = () => posts.map(post => <li key={post.id}>
+export default function Portfolios() {
+
+    const { posts: data, error, loading } = useGetData('/api/v1/posts');
+
+    const renderPosts = () => data.map(post => <li key={post.id} style={{ 'fontSize': '20px' }}>
         <Link href={`/portfolios/${post.id}`}>
             <a>
                 {post.title}
@@ -17,22 +21,19 @@ export default function Portfolios({ posts }) {
         <BaseLayout>
             <BasePage>
                 <h1>I am portfolios page</h1>
-                <ul>
-                    {renderPosts()}
-                </ul>
+                {loading &&
+                    <p>Loading data...</p>
+                }
+                {data &&
+                    <ul>
+                        {renderPosts(data)}
+                    </ul>
+                }
+                {error &&
+                    <div className="alert alert-danger">{error.message}</div>
+                }
             </BasePage>
         </BaseLayout >
     )
 }
 
-Portfolios.getInitialProps = async () => {
-    let posts = [];
-    try {
-        const postData = await axios.get("https://jsonplaceholder.typicode.com/posts")
-        posts = postData.data;
-    } catch (e) {
-        console.error(e);
-    }
-
-    return { posts: posts.slice(0, 10) }
-}
