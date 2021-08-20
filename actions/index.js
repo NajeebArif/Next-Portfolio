@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
 export const useGetData = (url) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function getData() {
+    async function fetchData() {
       const res = await fetch(url);
       const result = await res.json();
       if (res.status !== 200) {
@@ -18,8 +18,8 @@ export const useGetData = (url) => {
       setLoading(false);
     }
 
-    getData();
-  }, [])
+    url && fetchData();
+  }, [url])
 
-  return {posts: data, error, loading}
+  return {data, error, loading}
 }
