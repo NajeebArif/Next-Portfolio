@@ -7,6 +7,8 @@ import {
   Nav,
   NavItem
 } from 'reactstrap';
+import { useUser } from '@auth0/nextjs-auth0';
+import Profile from '../Profile';
 
 
 const BsNavLink = props => {
@@ -18,16 +20,18 @@ const BsNavLink = props => {
   )
 }
 
-const LoginLink = () =>   
-<a className="nav-link port-navbar-link" href="/api/auth/login">Login</a>
-{/* <a className="nav-link port-navbar-link" href="/api/v1/login">Login</a> */}
+const LoginLink = () =>
+  <a className="nav-link port-navbar-link" href="/api/auth/login">Login</a>
+{/* <a className="nav-link port-navbar-link" href="/api/v1/login">Login</a> */ }
 
 const LogoutLink = () =>
-<a className="nav-link port-navbar-link" href="/api/auth/logout">Logout</a>
+  <a className="nav-link port-navbar-link" href="/api/auth/logout">Logout</a>
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+
+  const { user, error, isLoading } = useUser();
 
   return (
     <div>
@@ -45,27 +49,33 @@ const Header = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/" title="Home"/>
+              <BsNavLink href="/" title="Home" />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/about" title="About"/>
+              <BsNavLink href="/about" title="About" />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/portfolios" title="Portfolios"/>
+              <BsNavLink href="/portfolios" title="Portfolios" />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/blogs" title="Blogs"/>
+              <BsNavLink href="/blogs" title="Blogs" />
             </NavItem>
             <NavItem className="port-navbar-item">
-              <BsNavLink href="/cv" title="Cv"/>
+              <BsNavLink href="/cv" title="Cv" />
             </NavItem>
           </Nav>
           <Nav navbar>
             <NavItem className="port-navbar-item">
-              <LoginLink />
+              {
+                user ? <Profile /> :
+                  <LoginLink />
+              }
             </NavItem>
             <NavItem className="port-navbar-item">
-              <LogoutLink />
+              {
+                user &&
+                <LogoutLink />
+              }
             </NavItem>
           </Nav>
         </Collapse>
