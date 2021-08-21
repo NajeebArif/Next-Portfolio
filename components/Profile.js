@@ -11,12 +11,6 @@ export default function Profile() {
   if (error) return <div>{error.message}</div>;
   
   return (
-    user && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
-      </div>
-    )
+    user && <Avatar src={user.picture} alt={user.name} email={user.email} name={user.name} size="40" round={true}/>
   );
 }
