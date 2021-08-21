@@ -15,7 +15,9 @@ export default function Blogs({ user, serverMsg }) {
     )
 }
 
+//TODO: move the url to env variables
 const BlogsContent = ({ user, msg }) => {
+    const isAdmin = user['https://example.com/roles']?.includes('admin')
     return (
         <>
             <h1>I am blogs page {user.email}</h1>
@@ -23,6 +25,12 @@ const BlogsContent = ({ user, msg }) => {
                 msg && <>
                     <h3>You have one message:</h3>
                     <p>{msg}</p>
+                </>
+            }
+            {
+                (user && isAdmin) && 
+                <>
+                    <h3>ADMIN CONTENT IS FOR ADMINS ONLY.</h3>
                 </>
             }
 
