@@ -1,8 +1,8 @@
 
-import BaseLayout from '../../components/layouts/BaseLayouts'
-import BasePage from '../../components/BasePage'
+import BaseLayout from '@/components/layouts/BaseLayouts'
+import BasePage from '@/components/BasePage'
 import Link from 'next/link'
-import { useGetPosts } from '../../actions'
+import { useGetPosts } from '@/actions'
 
 const fetcher = url => fetch(url).then(res=>res.json());
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseLayout from '../components/layouts/BaseLayouts';
+import BaseLayout from '@/components/layouts/BaseLayouts';
 import { Container, Row, Col } from 'reactstrap';
 
 import ReactTypingEffect from 'react-typing-effect';

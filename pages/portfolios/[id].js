@@ -1,8 +1,8 @@
 
-import BaseLayout from '../../components/layouts/BaseLayouts'
-import BasePage from '../../components/BasePage'
+import BaseLayout from '@/components/layouts/BaseLayouts'
+import BasePage from '@/components/BasePage'
 import { useRouter } from 'next/router'
-import { useGetPostsById } from '../../actions'
+import { useGetPostsById } from '@/actions'
 
 
 const Portfolio = () => {
