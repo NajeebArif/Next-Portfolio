@@ -1,8 +1,8 @@
 
 
 import React from 'react'
-import BaseLayout from '@/components/layouts/BaseLayouts'
-import BasePage from '@/components/BasePage'
+import BaseLayout from '../components/layouts/BaseLayouts'
+import BasePage from '../components/BasePage'
 
 export default function Blogs() {
     return (
