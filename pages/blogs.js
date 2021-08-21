@@ -15,8 +15,10 @@ export default function Blogs({ user, serverMsg }) {
     )
 }
 
-//TODO: move the url to env variables
 const BlogsContent = ({ user, msg }) => {
+    //process.env can only be accessed in node environment. not in browser
+    const roleKey = process.env.AUTH0_NAMESPACE;
+    console.log(roleKey)
     const isAdmin = user['https://example.com/roles']?.includes('admin')
     return (
         <>
