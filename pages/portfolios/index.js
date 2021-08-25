@@ -2,20 +2,18 @@
 import BaseLayout from '@/components/layouts/BaseLayouts'
 import BasePage from '@/components/BasePage'
 import Link from 'next/link'
-import { useGetPosts } from '@/actions'
+import PortfolioApi from '../../libs/api/portfoliosApi'
 
-const fetcher = url => fetch(url).then(res=>res.json());
-
-export default function Portfolios() {
+export default function Portfolios({portfolios}) {
 
     // const { data, error, loading } = useGetData('/api/v1/posts');
-    const { data, error, loading } = useGetPosts();
+    // const { data: portfolios, error, loading } = useGetPosts();
     // const { data, error, loading } = useSWR('/api/v1/posts', fetcher);
 
-    const renderPosts = () => data.map(post => <li key={post.id} style={{ 'fontSize': '20px' }}>
-        <Link href={`/portfolios/${post.id}`}>
+    const renderPortfolio = portfolios => portfolios.map(portfolio => <li key={portfolio._id} style={{ 'fontSize': '20px' }}>
+        <Link href={`/portfolios/${portfolio._id}`}>
             <a>
-                {post.title}
+                {portfolio.title}
             </a>
         </Link>
     </li>)
@@ -23,20 +21,24 @@ export default function Portfolios() {
     return (
         <BaseLayout>
             <BasePage>
-                <h1>I am portfolios page</h1>
-                {loading &&
-                    <p>Loading data...</p>
-                }
-                {data &&
+                
+                {portfolios &&
                     <ul>
-                        {renderPosts(data)}
+                        {renderPortfolio(portfolios)}
                     </ul>
-                }
-                {error &&
-                    <div className="alert alert-danger">{error.message}</div>
                 }
             </BasePage>
         </BaseLayout >
     )
+}
+
+export async function getStaticProps(){
+    const json = await new PortfolioApi().getAll();
+    const portfolios = json.data;
+    return {
+        props: {
+            portfolios
+        }
+    }
 }
 
