@@ -27,7 +27,7 @@ const LoginLink = () =>
 const LogoutLink = () =>
   <a className="nav-link port-navbar-link" href="/api/auth/logout">Logout</a>
 
-const Header = () => {
+const Header = ({className}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -36,13 +36,12 @@ const Header = () => {
   return (
     <div>
       <Navbar
-        className="port-navbar port-default absolute"
-        color="transparent"
+        className={`port-navbar port-default absolute ${className}`}
         dark
         expand="md">
         <div className="navbar-brand">
           <Link href="/">
-            <a className="port-navbar-brand">Filip Jerga</a>
+            <a className="port-navbar-brand">Najeeb Arif</a>
           </Link>
         </div>
         <NavbarToggler onClick={toggle} />

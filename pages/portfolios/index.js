@@ -3,36 +3,29 @@ import BaseLayout from '@/components/layouts/BaseLayouts'
 import BasePage from '@/components/BasePage'
 import Link from 'next/link'
 import PortfolioApi from '../../libs/api/portfoliosApi'
+import { Row, Col } from 'reactstrap';
+import PortfolioCard from '@/components/PortfolioCard';
 
-export default function Portfolios({portfolios}) {
+export default function Portfolios({ portfolios }) {
 
-    // const { data, error, loading } = useGetData('/api/v1/posts');
-    // const { data: portfolios, error, loading } = useGetPosts();
-    // const { data, error, loading } = useSWR('/api/v1/posts', fetcher);
-
-    const renderPortfolio = portfolios => portfolios.map(portfolio => <li key={portfolio._id} style={{ 'fontSize': '20px' }}>
-        <Link href={`/portfolios/${portfolio._id}`}>
-            <a>
-                {portfolio.title}
-            </a>
-        </Link>
-    </li>)
 
     return (
         <BaseLayout>
-            <BasePage>
-                
-                {portfolios &&
-                    <ul>
-                        {renderPortfolio(portfolios)}
-                    </ul>
-                }
+            <BasePage header="Portfolios" className="portfolio-page">
+                <Row>
+                    {portfolios.map(portfolio =>
+                        <Col key={portfolio._id} md="4">
+                            <PortfolioCard portfolio={portfolio} />
+                        </Col>
+                    )
+                    }
+                </Row>
             </BasePage>
         </BaseLayout >
     )
 }
 
-export async function getStaticProps(){
+export async function getStaticProps() {
     const json = await new PortfolioApi().getAll();
     const portfolios = json.data;
     return {

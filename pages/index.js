@@ -10,7 +10,7 @@ const roles = ["Developer", "Tech Lover", "Team Player", "React JS", "Angular"];
 class Index extends React.Component {
   render() {
     return (
-      <BaseLayout className="cover">
+      <BaseLayout className="cover" navClass="transparent">
         <div className="main-section">
           <div className="background-image">
             <img src="/images/background-index.png" />
@@ -38,7 +38,7 @@ class Index extends React.Component {
               <Col md="6" className="hero-welcome-wrapper">
                 <div className="hero-welcome-text">
                   <h1>
-                    Welcome to the portfolio website of Filip Jerga.
+                    Welcome to the portfolio website of Najeeb Arif.
                     Get informed, collaborate and discover projects I was working on through the years!
                   </h1>
                 </div>
