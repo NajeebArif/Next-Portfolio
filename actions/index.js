@@ -1,6 +1,7 @@
 
 
 import useSWR from 'swr'
+import { useState } from 'react';
 
 const fetcher = (url) =>
   fetch(url).then(async res => {
@@ -14,16 +15,36 @@ const fetcher = (url) =>
   });
 
 export const useGetPosts = () => {
-  const {data, error, ...rest} = useSWR('/api/v1/posts', fetcher);
-  return {data, error, loading: !data && !error, ...rest}
+  const { data, error, ...rest } = useSWR('/api/v1/posts', fetcher);
+  return { data, error, loading: !data && !error, ...rest }
 }
 
 export const useGetPostsById = (id) => {
-    const {data, error, ...rest} = useSWR(id ? `/api/v1/posts/${id}` : null, fetcher);
-    return {data, error, loading: !data && !error, ...rest}
+  const { data, error, ...rest } = useSWR(id ? `/api/v1/posts/${id}` : null, fetcher);
+  return { data, error, loading: !data && !error, ...rest }
+}
+
+
+export function useApiHandler(apiCall) {
+  const [reqState, setReqState] = useState({
+    error: null,
+    data: null,
+    loading: false
+  });
+
+  const handler = async (...data) => {
+    setReqState({ error: null, data: null, loading: true });
+    try {
+      const json = await apiCall(...data);
+      setReqState({ error: null, data: json.data, loading: false });
+    } catch (e) {
+      const message = (e.response && e.response.message) || 'Ooops, something went wrong...';
+      setReqState({ error: message, data: null, loading: false });
+    }
   }
 
-
+  return [handler, { ...reqState }]
+}
 
 // import { useEffect, useState } from 'react';
 
