@@ -15,6 +15,10 @@ class PortfolioApi {
   getById(id) {
     return axios.get(`${this.apiUrl}/${id}`)
   }
+
+  createPortfolio(data) {
+    return axios.post(this.apiUrl, data);
+  }
 }
 
 export default PortfolioApi;
