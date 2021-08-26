@@ -24,7 +24,7 @@ const PortfolioDetailPage = ({ portfolio }) => {
             <div className="card-body">
                 <h5 className="card-title">{portfolio.title}</h5>
                 <h6 className="card-subtitle text-muted">{portfolio.jobTitle}</h6>
-                <a href={portfolio.companyWebsite} className="card-link card-subtitle mb-2 text-muted">{portfolio.company}</a>
+                <a href={`https://${portfolio.companyWebsite}`} target="_blank" className="card-link card-subtitle mb-2 text-muted">{portfolio.company}</a>
                 <p className="card-text">{portfolio.description}</p>
                 <Link href={`/portfolios/${portfolio._id}/edit`}>
                     <a className="card-link">Edit</a>
