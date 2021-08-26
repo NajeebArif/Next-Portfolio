@@ -7,10 +7,20 @@ import { Row, Col, Button } from 'reactstrap';
 import PortfolioCard from '@/components/PortfolioCard';
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link'
+import { useDeletePortfolio } from '@/actions/portfolios';
 
 export default function Portfolios({ portfolios }) {
 
     const router = useRouter()
+    const [deletePortfolio, { data, error }] = useDeletePortfolio();
+    const _deletePortfolio = async (e, portfolioId) => {
+        e.stopPropagation();
+        const isConfirm = confirm('Are you sure you want to delete this portfolio?');
+        if (isConfirm) {
+            await deletePortfolio(portfolioId);
+        }
+    }
+
     return (
         <BaseLayout>
             <BasePage header={<PortoliosHeader />} className="portfolio-page">
@@ -31,7 +41,7 @@ export default function Portfolios({ portfolios }) {
                                         }}
                                         className="mr-2"
                                         color="warning">Edit</Button>
-                                    <Button color="danger">Delete</Button>
+                                    <Button color="danger" onClick={(e) => _deletePortfolio(e, portfolio._id)}>Delete</Button>
                                 </>
                             </PortfolioCard>
                         </Col>

@@ -20,6 +20,17 @@ export default withApiAuthRequired(async function handlePortfolio(req, res) {
     }catch(e) {
       return res.status(e.status || 422).json(e.response.data);
     }
-    
+  }
+
+  if (req.method === 'DELETE') {
+    try{
+      const { accessToken } = await getAccessToken(req, res, {
+        scopes: ['create:portfolios']
+      });
+      const json = await new PortfolioApi(accessToken).delete(req.query.id);
+      return res.json(json.data);
+    }catch(e) {
+      return res.status(e.status || 422).json(e.response.data);
+    }
   }
 })
