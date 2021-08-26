@@ -3,9 +3,11 @@ import BasePage from '@/components/BasePage';
 import { Row, Col } from 'reactstrap';
 import PortfolioForm from '@/components/PortfolioForm';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { createPortfolio } from '@/actions/portfolios';
+import { useCreatePortfolio } from '@/actions/portfolios';
 
 export default withPageAuthRequired(function PortfolioNew({ user }) {
+
+    const [createPortfolio, {data, loading, error}] = useCreatePortfolio();
 
     const roleKey = process.env.AUTH0_NAMESPACE;
     const isAdmin = user[roleKey]?.includes('admin')
