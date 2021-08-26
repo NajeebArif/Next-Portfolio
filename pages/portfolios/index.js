@@ -8,16 +8,19 @@ import PortfolioCard from '@/components/PortfolioCard';
 import { useUser } from '@auth0/nextjs-auth0';
 import Link from 'next/link'
 import { useDeletePortfolio } from '@/actions/portfolios';
+import { useState } from 'react';
 
-export default function Portfolios({ portfolios }) {
+export default function Portfolios({ portfolios: initialPortfolios }) {
 
     const router = useRouter()
+    const [portfolios, setPortfolios] = useState(initialPortfolios);
     const [deletePortfolio, { data, error }] = useDeletePortfolio();
     const _deletePortfolio = async (e, portfolioId) => {
         e.stopPropagation();
         const isConfirm = confirm('Are you sure you want to delete this portfolio?');
         if (isConfirm) {
             await deletePortfolio(portfolioId);
+            setPortfolios(portfolios.filter(p => p._id !== portfolioId));
         }
     }
 
