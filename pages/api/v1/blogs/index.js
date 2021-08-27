@@ -12,6 +12,6 @@ export default withApiAuthRequired(async function createBlog(req, res) {
         const json = await new BlogApi(accessToken).create(req.body);
         return res.json(json.data);
     } catch (e) {
-        return res.status(e.status || 422).json(e.response.data);
+        return res.status(e.status || 422).json( e.response.data);
     }
 })
