@@ -19,6 +19,10 @@ class BlogApi {
   create(data) {
     return axios.post(this.apiUrl, data, this.config);
   }
+
+  getById(id) {
+    return axios.get(`${this.apiUrl}/${id}`);
+  }
 }
 
 export default BlogApi;
