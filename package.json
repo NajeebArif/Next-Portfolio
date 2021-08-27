@@ -22,7 +22,8 @@
     "react-toastify": "^6.0.4",
     "react-typing-effect": "^2.0.5",
     "reactstrap": "^8.9.0",
-    "sass": "^1.38.0",
+    "sass": "^1.38.1",
+    "slate-simple-editor": "github:Jerga99/slate-simple-editor",
     "swr": "^0.5.6"
   },
   "devDependencies": {
