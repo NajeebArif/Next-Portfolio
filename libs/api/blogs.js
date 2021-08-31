@@ -1,31 +1,12 @@
 
 
-import axios from 'axios';
+import BaseApi from './BaseApi';
 
-class BlogApi {
+class BlogApi extends BaseApi {
 
   constructor(accessToken) {
-    this.config = {}
+    super(accessToken, '/blogs');
 
-    if (accessToken) {
-      this.config.headers = {
-        authorization: `Bearer ${accessToken}`
-      }
-    }
-
-    this.apiUrl = process.env.PORTFOLIO_API_URL + '/blogs';
-  }
-
-  create(data) {
-    return axios.post(this.apiUrl, data, this.config);
-  }
-
-  getById(id) {
-    return axios.get(`${this.apiUrl}/${id}`);
-  }
-
-  update(id, data) {
-    return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
   }
 }
 

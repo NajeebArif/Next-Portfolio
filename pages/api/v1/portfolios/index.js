@@ -10,7 +10,7 @@ export default withApiAuthRequired(async function createPortfolio(req, res) {
     });
     try {
         const data = req.body;
-        await new PortfolioApi(accessToken).createPortfolio(data);
+        await new PortfolioApi(accessToken).create(data);
         return res.json({ message: 'Portfolio was created!' });
     } catch (e) {
         return res.status(e.response.status || 422).json(e.response.data);
