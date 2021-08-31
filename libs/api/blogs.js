@@ -23,6 +23,10 @@ class BlogApi {
   getById(id) {
     return axios.get(`${this.apiUrl}/${id}`);
   }
+
+  update(id, data) {
+    return axios.patch(`${this.apiUrl}/${id}`, data, this.config);
+  }
 }
 
 export default BlogApi;
